@@ -18,6 +18,8 @@
 
 body {
   color: rgb(var(--foreground-rgb));
+  font-family: 'Montserrat', sans-serif;
+  scroll-behavior: smooth;
   background: linear-gradient(
       to bottom,
       transparent,

@@ -16,12 +16,12 @@ const projectsData = [
   },
   {
     id: 2,
-    title: "Potography Portfolio Website",
-    description: "Project 2 description",
+    title: "Shloka",
+    description: "A free restful API serving quality Sanskrit Shlokas",
     image: "/images/projects/2.png",
     tag: ["All", "Web"],
-    gitUrl: "/",
-    previewUrl: "/",
+    gitUrl: "https://github.com/shivvamm/shloka",
+    previewUrl: "https://shloka.vercel.app/",
   },
   {
     id: 3,
