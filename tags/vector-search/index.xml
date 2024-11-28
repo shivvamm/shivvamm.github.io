@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Vector Search on Shivam Pandey</title><link>https://shivvamm.github.io/tags/vector-search/</link><description>Recent content in Vector Search on Shivam Pandey</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shivvamm.github.io/tags/vector-search/index.xml" rel="self" type="application/rss+xml"/><item><title>ANN Search Architectures</title><link>https://shivvamm.github.io/p/ann-search-architectures/</link><pubDate>Thu, 28 Nov 2024 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/ann-search-architectures/</guid><description>&lt;img src="https://shivvamm.github.io/p/ann-search-architectures/cover.jpg" alt="Featured image of post ANN Search Architectures" />&lt;p>These are four popular approximate nearest neighbor (ANN) search architectures, designed to efficiently search through large datasets, especially in high-dimensional spaces. Each has its own strengths, weaknesses, and use cases. Let me explain them one by one:&lt;/p>
+&lt;h3 id="1-faiss-facebook-ai-similarity-search">1. &lt;strong>Faiss (Facebook AI Similarity Search)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Faiss is an open-source library developed by Facebook AI Research (FAIR) designed for efficient similarity search and clustering of dense vectors. It is widely used in machine learning and AI applications, such as recommendation systems, image retrieval, and natural language processing.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Exact and Approximate Search&lt;/strong>: Faiss supports both exact nearest neighbor (NN) search and approximate search using various techniques, such as quantization and indexing.&lt;/li>
+&lt;li>&lt;strong>Indexing Methods&lt;/strong>: Faiss includes several indexing methods to optimize the search:
+&lt;ul>
+&lt;li>&lt;strong>Flat (Brute-Force Search)&lt;/strong>: Exhaustively compares all vectors. It’s the slowest but guarantees accuracy.&lt;/li>
+&lt;li>&lt;strong>Product Quantization (PQ)&lt;/strong>: A lossy compression method that reduces memory usage and speeds up search by approximating the distances.&lt;/li>
+&lt;li>&lt;strong>IVF (Inverted File)&lt;/strong>: An indexing method based on partitioning the space into clusters (or cells) and searching within the relevant cluster.&lt;/li>
+&lt;li>&lt;strong>HNSW (Hierarchical Navigable Small World)&lt;/strong>: A graph-based search method for fast and approximate nearest neighbor retrieval.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>GPU Support&lt;/strong>: Faiss can also leverage GPUs for faster computations, making it highly scalable for large datasets.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Image and video search, semantic search in NLP, and large-scale recommendation systems.&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-hnsw-hierarchical-navigable-small-world">2. &lt;strong>HNSW (Hierarchical Navigable Small World)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: HNSW is an approximate nearest neighbor search algorithm based on the construction of small-world graphs. It aims to provide fast nearest neighbor search while maintaining a balance between search accuracy and speed.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Graph Construction&lt;/strong>: The HNSW algorithm builds a multi-layer graph, where each layer is a subset of the data points. The graph is navigable, meaning you can efficiently explore neighboring nodes to find nearest neighbors.&lt;/li>
+&lt;li>&lt;strong>Navigability&lt;/strong>: The algorithm uses small-world properties, where most nodes are close to each other, allowing for fast traversal.&lt;/li>
+&lt;li>&lt;strong>Performance&lt;/strong>: It provides high recall (accuracy) at relatively low computational cost. The performance improves with the number of layers in the graph.&lt;/li>
+&lt;li>&lt;strong>Memory Efficiency&lt;/strong>: HNSW has a relatively high memory overhead due to the need to store the graph structure, but it is highly efficient in terms of query speed.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Large-scale nearest neighbor search, such as in image retrieval, NLP, and recommendation engines.&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-diskann">3. &lt;strong>DiskANN&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: DiskANN (Disk-based Approximate Nearest Neighbor) is a variant of the ANN search algorithms designed to handle extremely large datasets that do not fit into memory by utilizing disk storage efficiently.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Disk-Backed Search&lt;/strong>: Unlike traditional memory-based search algorithms, DiskANN is designed to perform ANN search while storing the dataset on disk rather than in memory. It uses efficient I/O techniques to minimize disk read operations.&lt;/li>
+&lt;li>&lt;strong>Scalability&lt;/strong>: DiskANN is suitable for very large datasets (terabytes or more) and works by compressing data and storing it in a way that minimizes disk access during search.&lt;/li>
+&lt;li>&lt;strong>Approximation&lt;/strong>: As with other ANN algorithms, DiskANN sacrifices some search accuracy in exchange for speed. It uses indexing techniques to accelerate search without needing to scan every point on disk.&lt;/li>
+&lt;li>&lt;strong>Hybrid Models&lt;/strong>: The algorithm may combine multiple indexing structures (e.g., HNSW with disk-based techniques) to balance search performance and memory usage.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Used in scenarios where data is too large to fit into memory, such as large-scale image and video search, genomic data analysis, and recommendation systems for big data.&lt;/li>
+&lt;/ul>
+&lt;h3 id="4-scann-scalable-nearest-neighbor">4. &lt;strong>ScaNN (Scalable Nearest Neighbor)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: ScaNN is a fast and efficient nearest neighbor search algorithm developed by Google Research, designed to handle high-dimensional datasets. It uses advanced techniques like quantization and hashing to speed up the search process while maintaining accuracy.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Quantization&lt;/strong>: ScaNN applies quantization techniques (such as vector quantization) to compress the dataset and reduce memory usage. This allows for faster searches at the cost of some approximation.&lt;/li>
+&lt;li>&lt;strong>Hybrid Search&lt;/strong>: ScaNN uses a combination of multiple search methods, including tree-based and graph-based search, to balance query time and recall. It also incorporates inverted indexing for fast lookups.&lt;/li>
+&lt;li>&lt;strong>Efficient Search&lt;/strong>: ScaNN offers state-of-the-art speed and accuracy for high-dimensional vector search by applying a combination of filtering and dimensionality reduction techniques.&lt;/li>
+&lt;li>&lt;strong>Performance Tuning&lt;/strong>: ScaNN allows users to fine-tune the balance between speed and accuracy by adjusting several hyperparameters.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Large-scale machine learning models (e.g., search engines, image retrieval, recommendation systems), NLP models like BERT, and similarity search on high-dimensional embeddings.&lt;/li>
+&lt;/ul>
+&lt;h3 id="comparison-of-key-characteristics">Comparison of Key Characteristics:
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Feature&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Faiss&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>HNSW&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>DiskANN&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>ScaNN&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>Accuracy&lt;/strong>&lt;/td>
+&lt;td>High (with exact search)&lt;/td>
+&lt;td>High (approximate)&lt;/td>
+&lt;td>Moderate (approximate)&lt;/td>
+&lt;td>High (adjustable)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Search Speed&lt;/strong>&lt;/td>
+&lt;td>Fast with indexing&lt;/td>
+&lt;td>Very fast (graph-based)&lt;/td>
+&lt;td>Fast (disk-based)&lt;/td>
+&lt;td>Very fast (quantized)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Memory Usage&lt;/strong>&lt;/td>
+&lt;td>Memory-efficient with PQ&lt;/td>
+&lt;td>High due to graph storage&lt;/td>
+&lt;td>Efficient disk usage&lt;/td>
+&lt;td>Memory-efficient&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Scalability&lt;/strong>&lt;/td>
+&lt;td>High (GPU support)&lt;/td>
+&lt;td>High (graph scales)&lt;/td>
+&lt;td>Very high (disk-based)&lt;/td>
+&lt;td>High (fine-tuning)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Use Case&lt;/strong>&lt;/td>
+&lt;td>NLP, image search&lt;/td>
+&lt;td>Large-scale ANN search&lt;/td>
+&lt;td>Large-scale disk-based search&lt;/td>
+&lt;td>ML models, embeddings&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="summary">Summary:
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Faiss&lt;/strong> is versatile and widely used in machine learning for both exact and approximate nearest neighbor search, with strong support for GPU acceleration.&lt;/li>
+&lt;li>&lt;strong>HNSW&lt;/strong> is excellent for high-speed approximate search, especially with its small-world graph structure, suitable for general-purpose large-scale ANN search.&lt;/li>
+&lt;li>&lt;strong>DiskANN&lt;/strong> is specifically designed for large datasets that don&amp;rsquo;t fit in memory, making it suitable for disk-backed ANN searches at scale.&lt;/li>
+&lt;li>&lt;strong>ScaNN&lt;/strong> offers an efficient, scalable solution for large datasets, focusing on fast search times and flexibility in tuning accuracy vs. speed.&lt;/li>
+&lt;/ul>
+&lt;p>Each of these architectures can be adapted to different scenarios depending on the trade-offs between accuracy, speed, memory usage, and scalability.&lt;/p>
+&lt;blockquote>
+&lt;p>Generated by AI&lt;/p>
+&lt;/blockquote></description></item></channel></rss>
