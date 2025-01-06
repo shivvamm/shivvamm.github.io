@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Shivam Pandey</title><link>https://shivvamm.github.io/</link><description>Recent content on Shivam Pandey</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 28 Nov 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://shivvamm.github.io/index.xml" rel="self" type="application/rss+xml"/><item><title>ANN Search Architectures</title><link>https://shivvamm.github.io/p/ann-search-architectures/</link><pubDate>Thu, 28 Nov 2024 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/ann-search-architectures/</guid><description>&lt;img src="https://shivvamm.github.io/p/ann-search-architectures/cover.jpg" alt="Featured image of post ANN Search Architectures" />&lt;p>These are four popular approximate nearest neighbor (ANN) search architectures, designed to efficiently search through large datasets, especially in high-dimensional spaces. Each has its own strengths, weaknesses, and use cases. Let me explain them one by one:&lt;/p>
+&lt;h3 id="1-faiss-facebook-ai-similarity-search">1. &lt;strong>Faiss (Facebook AI Similarity Search)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Faiss is an open-source library developed by Facebook AI Research (FAIR) designed for efficient similarity search and clustering of dense vectors. It is widely used in machine learning and AI applications, such as recommendation systems, image retrieval, and natural language processing.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Exact and Approximate Search&lt;/strong>: Faiss supports both exact nearest neighbor (NN) search and approximate search using various techniques, such as quantization and indexing.&lt;/li>
+&lt;li>&lt;strong>Indexing Methods&lt;/strong>: Faiss includes several indexing methods to optimize the search:
+&lt;ul>
+&lt;li>&lt;strong>Flat (Brute-Force Search)&lt;/strong>: Exhaustively compares all vectors. It’s the slowest but guarantees accuracy.&lt;/li>
+&lt;li>&lt;strong>Product Quantization (PQ)&lt;/strong>: A lossy compression method that reduces memory usage and speeds up search by approximating the distances.&lt;/li>
+&lt;li>&lt;strong>IVF (Inverted File)&lt;/strong>: An indexing method based on partitioning the space into clusters (or cells) and searching within the relevant cluster.&lt;/li>
+&lt;li>&lt;strong>HNSW (Hierarchical Navigable Small World)&lt;/strong>: A graph-based search method for fast and approximate nearest neighbor retrieval.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>GPU Support&lt;/strong>: Faiss can also leverage GPUs for faster computations, making it highly scalable for large datasets.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Image and video search, semantic search in NLP, and large-scale recommendation systems.&lt;/li>
+&lt;/ul>
+&lt;h3 id="2-hnsw-hierarchical-navigable-small-world">2. &lt;strong>HNSW (Hierarchical Navigable Small World)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: HNSW is an approximate nearest neighbor search algorithm based on the construction of small-world graphs. It aims to provide fast nearest neighbor search while maintaining a balance between search accuracy and speed.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Graph Construction&lt;/strong>: The HNSW algorithm builds a multi-layer graph, where each layer is a subset of the data points. The graph is navigable, meaning you can efficiently explore neighboring nodes to find nearest neighbors.&lt;/li>
+&lt;li>&lt;strong>Navigability&lt;/strong>: The algorithm uses small-world properties, where most nodes are close to each other, allowing for fast traversal.&lt;/li>
+&lt;li>&lt;strong>Performance&lt;/strong>: It provides high recall (accuracy) at relatively low computational cost. The performance improves with the number of layers in the graph.&lt;/li>
+&lt;li>&lt;strong>Memory Efficiency&lt;/strong>: HNSW has a relatively high memory overhead due to the need to store the graph structure, but it is highly efficient in terms of query speed.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Large-scale nearest neighbor search, such as in image retrieval, NLP, and recommendation engines.&lt;/li>
+&lt;/ul>
+&lt;h3 id="3-diskann">3. &lt;strong>DiskANN&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: DiskANN (Disk-based Approximate Nearest Neighbor) is a variant of the ANN search algorithms designed to handle extremely large datasets that do not fit into memory by utilizing disk storage efficiently.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Disk-Backed Search&lt;/strong>: Unlike traditional memory-based search algorithms, DiskANN is designed to perform ANN search while storing the dataset on disk rather than in memory. It uses efficient I/O techniques to minimize disk read operations.&lt;/li>
+&lt;li>&lt;strong>Scalability&lt;/strong>: DiskANN is suitable for very large datasets (terabytes or more) and works by compressing data and storing it in a way that minimizes disk access during search.&lt;/li>
+&lt;li>&lt;strong>Approximation&lt;/strong>: As with other ANN algorithms, DiskANN sacrifices some search accuracy in exchange for speed. It uses indexing techniques to accelerate search without needing to scan every point on disk.&lt;/li>
+&lt;li>&lt;strong>Hybrid Models&lt;/strong>: The algorithm may combine multiple indexing structures (e.g., HNSW with disk-based techniques) to balance search performance and memory usage.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Used in scenarios where data is too large to fit into memory, such as large-scale image and video search, genomic data analysis, and recommendation systems for big data.&lt;/li>
+&lt;/ul>
+&lt;h3 id="4-scann-scalable-nearest-neighbor">4. &lt;strong>ScaNN (Scalable Nearest Neighbor)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: ScaNN is a fast and efficient nearest neighbor search algorithm developed by Google Research, designed to handle high-dimensional datasets. It uses advanced techniques like quantization and hashing to speed up the search process while maintaining accuracy.&lt;/li>
+&lt;li>&lt;strong>Key Features&lt;/strong>:
+&lt;ul>
+&lt;li>&lt;strong>Quantization&lt;/strong>: ScaNN applies quantization techniques (such as vector quantization) to compress the dataset and reduce memory usage. This allows for faster searches at the cost of some approximation.&lt;/li>
+&lt;li>&lt;strong>Hybrid Search&lt;/strong>: ScaNN uses a combination of multiple search methods, including tree-based and graph-based search, to balance query time and recall. It also incorporates inverted indexing for fast lookups.&lt;/li>
+&lt;li>&lt;strong>Efficient Search&lt;/strong>: ScaNN offers state-of-the-art speed and accuracy for high-dimensional vector search by applying a combination of filtering and dimensionality reduction techniques.&lt;/li>
+&lt;li>&lt;strong>Performance Tuning&lt;/strong>: ScaNN allows users to fine-tune the balance between speed and accuracy by adjusting several hyperparameters.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>Use Cases&lt;/strong>: Large-scale machine learning models (e.g., search engines, image retrieval, recommendation systems), NLP models like BERT, and similarity search on high-dimensional embeddings.&lt;/li>
+&lt;/ul>
+&lt;h3 id="comparison-of-key-characteristics">Comparison of Key Characteristics:
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;strong>Feature&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>Faiss&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>HNSW&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>DiskANN&lt;/strong>&lt;/th>
+&lt;th>&lt;strong>ScaNN&lt;/strong>&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;strong>Accuracy&lt;/strong>&lt;/td>
+&lt;td>High (with exact search)&lt;/td>
+&lt;td>High (approximate)&lt;/td>
+&lt;td>Moderate (approximate)&lt;/td>
+&lt;td>High (adjustable)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Search Speed&lt;/strong>&lt;/td>
+&lt;td>Fast with indexing&lt;/td>
+&lt;td>Very fast (graph-based)&lt;/td>
+&lt;td>Fast (disk-based)&lt;/td>
+&lt;td>Very fast (quantized)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Memory Usage&lt;/strong>&lt;/td>
+&lt;td>Memory-efficient with PQ&lt;/td>
+&lt;td>High due to graph storage&lt;/td>
+&lt;td>Efficient disk usage&lt;/td>
+&lt;td>Memory-efficient&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Scalability&lt;/strong>&lt;/td>
+&lt;td>High (GPU support)&lt;/td>
+&lt;td>High (graph scales)&lt;/td>
+&lt;td>Very high (disk-based)&lt;/td>
+&lt;td>High (fine-tuning)&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>&lt;strong>Use Case&lt;/strong>&lt;/td>
+&lt;td>NLP, image search&lt;/td>
+&lt;td>Large-scale ANN search&lt;/td>
+&lt;td>Large-scale disk-based search&lt;/td>
+&lt;td>ML models, embeddings&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="summary">Summary:
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Faiss&lt;/strong> is versatile and widely used in machine learning for both exact and approximate nearest neighbor search, with strong support for GPU acceleration.&lt;/li>
+&lt;li>&lt;strong>HNSW&lt;/strong> is excellent for high-speed approximate search, especially with its small-world graph structure, suitable for general-purpose large-scale ANN search.&lt;/li>
+&lt;li>&lt;strong>DiskANN&lt;/strong> is specifically designed for large datasets that don&amp;rsquo;t fit in memory, making it suitable for disk-backed ANN searches at scale.&lt;/li>
+&lt;li>&lt;strong>ScaNN&lt;/strong> offers an efficient, scalable solution for large datasets, focusing on fast search times and flexibility in tuning accuracy vs. speed.&lt;/li>
+&lt;/ul>
+&lt;p>Each of these architectures can be adapted to different scenarios depending on the trade-offs between accuracy, speed, memory usage, and scalability.&lt;/p>
+&lt;blockquote>
+&lt;p>Generated by AI&lt;/p>
+&lt;/blockquote></description></item><item><title>Top Platforms for AI/ML Engineers to Showcase Skills and Compete</title><link>https://shivvamm.github.io/p/topplatforms-for-ai-ml-engineers-to-showcase-skills-and-compete/</link><pubDate>Mon, 28 Nov 2022 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/topplatforms-for-ai-ml-engineers-to-showcase-skills-and-compete/</guid><description>&lt;img src="https://shivvamm.github.io/p/topplatforms-for-ai-ml-engineers-to-showcase-skills-and-compete/cover.jpeg" alt="Featured image of post Top Platforms for AI/ML Engineers to Showcase Skills and Compete" />&lt;p>For AI/ML engineers, there are several platforms where they can compete, showcase their skills, and gain recognition in the field. Here are some popular platforms that focus on AI and ML challenges:&lt;/p>
+&lt;h3 id="1-kaggle">1. &lt;strong>Kaggle&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Kaggle is one of the most popular platforms for data science, machine learning, and AI challenges. It offers a variety of datasets, competitions, and notebooks that allow users to solve real-world problems and demonstrate their skills.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Kaggle hosts competitions where participants can work on problems related to data analysis, predictive modeling, and machine learning. Some competitions have substantial cash prizes and are sponsored by large companies.&lt;/li>
+&lt;li>&lt;strong>Learning&lt;/strong>: Kaggle also provides learning resources such as tutorials and courses to help individuals improve their AI/ML knowledge.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: Kaggle has a large, active community that shares solutions, approaches, and discussions.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.kaggle.com/" target="_blank" rel="noopener"
+>https://www.kaggle.com/&lt;/a>&lt;/p>
+&lt;h3 id="2-drivendata">2. &lt;strong>DrivenData&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Similar to Kaggle, DrivenData offers data science and machine learning competitions but with a focus on social impact and non-profit organizations. It challenges participants to solve problems in areas such as public health, education, and conservation.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Competitions are geared toward practical, real-world problems, and solutions often lead to measurable impacts for organizations.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: DrivenData also has a collaborative community of data scientists and AI professionals.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.drivendata.org/" target="_blank" rel="noopener"
+>https://www.drivendata.org/&lt;/a>&lt;/p>
+&lt;h3 id="3-topcoder">3. &lt;strong>Topcoder&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Topcoder is a global competitive platform for various domains, including AI and ML. It offers crowdsourcing competitions in a wide range of technical areas.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Topcoder hosts algorithm challenges, data science challenges, and AI/ML competitions where participants can test their skills against a global pool of talent.&lt;/li>
+&lt;li>&lt;strong>Opportunities&lt;/strong>: The platform offers not only competitions but also opportunities for paid freelance work with clients in need of AI/ML expertise.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.topcoder.com/" target="_blank" rel="noopener"
+>https://www.topcoder.com/&lt;/a>&lt;/p>
+&lt;h3 id="4-zindi">4. &lt;strong>Zindi&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Zindi is a platform dedicated to solving Africa&amp;rsquo;s most pressing challenges using data science and AI. Zindi hosts AI/ML competitions that solve problems across a variety of sectors, including agriculture, health, and energy.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: These competitions often involve building predictive models, working with large datasets, and providing innovative solutions to real-world issues.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: Zindi is known for its strong focus on the African continent but has a global community of data scientists and AI professionals.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://zindi.africa/" target="_blank" rel="noopener"
+>https://zindi.africa/&lt;/a>&lt;/p>
+&lt;h3 id="5-aicrowd">5. &lt;strong>AIcrowd&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: AIcrowd is a platform that hosts AI and machine learning challenges, including reinforcement learning, natural language processing, and more.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: AIcrowd hosts both theoretical and practical challenges, allowing participants to apply cutting-edge AI methods to real-world problems.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: It features a collaborative environment where participants can share solutions and insights.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.aicrowd.com/" target="_blank" rel="noopener"
+>https://www.aicrowd.com/&lt;/a>&lt;/p>
+&lt;h3 id="6-codalab">6. &lt;strong>Codalab&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Codalab is a platform for running data science and machine learning competitions. It is often used by academic institutions and research organizations for organizing challenges in AI and ML.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Codalab supports a variety of AI/ML competitions, including computer vision, NLP, and predictive modeling challenges.&lt;/li>
+&lt;li>&lt;strong>Academic Focus&lt;/strong>: Codalab is widely used in research and educational settings for conducting AI-related challenges.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://competitions.codalab.org/" target="_blank" rel="noopener"
+>https://competitions.codalab.org/&lt;/a>&lt;/p>
+&lt;h3 id="7-hackerearth-aiml-challenges">7. &lt;strong>Hackerearth (AI/ML Challenges)&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: While Hackerearth is known for its coding challenges, it also hosts AI and machine learning competitions, which allow participants to solve real-world ML problems.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Hackerearth offers challenges across various AI/ML domains, and participants can build and test models for real-world datasets.&lt;/li>
+&lt;li>&lt;strong>Opportunities&lt;/strong>: The platform also provides job opportunities and internship listings for those who excel in its challenges.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.hackerearth.com/challenges/" target="_blank" rel="noopener"
+>https://www.hackerearth.com/challenges/&lt;/a>&lt;/p>
+&lt;h3 id="8-codalab">8. &lt;strong>CodaLab&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: CodaLab allows organizations to set up and run AI/ML competitions. It’s a popular platform for academic and industrial research challenges.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: There are a variety of competitions related to data science, AI modeling, and real-world problem-solving.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: It’s a great platform for collaboration, often utilized for open challenges and academic contests.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://competitions.codalab.org/" target="_blank" rel="noopener"
+>https://competitions.codalab.org/&lt;/a>&lt;/p>
+&lt;h3 id="9-machine-learning-competitions-on-github">9. &lt;strong>Machine Learning Competitions on GitHub&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: GitHub hosts various repositories where AI/ML engineers can participate in open-source projects, collaborate with others, or contribute to ongoing competitions.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: Engaging with open-source projects and competitions on GitHub helps engineers build a public portfolio of their work, which can be valuable for career growth.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://github.com/" target="_blank" rel="noopener"
+>https://github.com/&lt;/a>&lt;/p>
+&lt;h3 id="10-ai-challenges-on-devpost">10. &lt;strong>AI Challenges on DevPost&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: DevPost is a platform where developers can participate in hackathons, including AI/ML-focused events. Many organizations run competitions on DevPost to identify innovative AI solutions.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Challenges are often centered around building AI models or developing creative AI-based solutions for specific domains.&lt;/li>
+&lt;li>&lt;strong>Hackathons&lt;/strong>: It also includes hackathons that focus on AI and data science projects.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://devpost.com/" target="_blank" rel="noopener"
+>https://devpost.com/&lt;/a>&lt;/p>
+&lt;h3 id="11-fastai-competitions">11. &lt;strong>Fast.ai Competitions&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: Fast.ai is a deep learning research group and platform that also hosts competitions and projects, especially focused on democratizing deep learning and AI.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: Fast.ai often holds challenges that allow participants to apply cutting-edge deep learning techniques.&lt;/li>
+&lt;li>&lt;strong>Learning&lt;/strong>: It’s also a great platform to learn and experiment with state-of-the-art techniques in deep learning.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://www.fast.ai/" target="_blank" rel="noopener"
+>https://www.fast.ai/&lt;/a>&lt;/p>
+&lt;h3 id="12-mlperf">12. &lt;strong>MLPerf&lt;/strong>
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>Overview&lt;/strong>: MLPerf is a benchmarking suite for measuring the performance of machine learning hardware, software, and services.&lt;/li>
+&lt;li>&lt;strong>Competitions&lt;/strong>: MLPerf hosts competitions focused on improving performance in training and inference for a variety of ML tasks.&lt;/li>
+&lt;li>&lt;strong>Community&lt;/strong>: It&amp;rsquo;s a collaborative platform for researchers and engineers to work on improving AI/ML performance.&lt;/li>
+&lt;/ul>
+&lt;p>Website: &lt;a class="link" href="https://mlperf.org/" target="_blank" rel="noopener"
+>https://mlperf.org/&lt;/a>&lt;/p>
+&lt;p>These platforms allow AI/ML engineers to not only compete but also learn, collaborate, and build portfolios that can be showcased to potential employers or collaborators in the field.&lt;/p>
+&lt;blockquote>
+&lt;p>Generated by AI&lt;/p>
+&lt;/blockquote></description></item><item><title>Cyclomatic Complexity</title><link>https://shivvamm.github.io/p/cyclomatic-complexity/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/cyclomatic-complexity/</guid><description>&lt;img src="https://shivvamm.github.io/p/cyclomatic-complexity/cover.jpg" alt="Featured image of post Cyclomatic Complexity" />&lt;h3 id="understanding-cyclomatic-complexity-a-key-metric-for-code-quality">Understanding Cyclomatic Complexity: A Key Metric for Code Quality
+&lt;/h3>&lt;p>When it comes to writing and maintaining software, one of the biggest challenges developers face is managing the complexity of their code. This is where &lt;strong>cyclomatic complexity&lt;/strong> comes into play—a metric that measures the logical complexity of a program by analyzing its control flow. It provides valuable insights into code quality, maintainability, and testing requirements.&lt;/p>
+&lt;hr>
+&lt;h3 id="what-is-cyclomatic-complexity">What is Cyclomatic Complexity?
+&lt;/h3>&lt;p>Cyclomatic complexity, introduced by Thomas J. McCabe in 1976, is a quantitative measure of the number of linearly independent paths through a program&amp;rsquo;s source code. Simply put, it evaluates how many decision points (e.g., &lt;code>if&lt;/code>, &lt;code>while&lt;/code>, &lt;code>for&lt;/code>, &lt;code>switch&lt;/code>) exist in your code and how these decisions affect its overall structure.&lt;/p>
+&lt;hr>
+&lt;h3 id="why-is-cyclomatic-complexity-important">Why is Cyclomatic Complexity Important?
+&lt;/h3>&lt;p>This metric plays a crucial role in software development and testing for several reasons:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Code Quality:&lt;/strong> Lower complexity often correlates with cleaner, more maintainable code. It helps developers pinpoint overly complicated functions or modules that may need refactoring.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Testing:&lt;/strong> Cyclomatic complexity determines the minimum number of test cases required to achieve complete branch coverage. This ensures all possible execution paths are tested, leading to more robust software.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Maintainability:&lt;/strong> High complexity increases the difficulty of understanding and modifying code. Simplifying complex sections improves maintainability and reduces the risk of introducing bugs.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Predictability:&lt;/strong> Complex code often leads to higher defect rates. By managing complexity, teams can create more predictable and reliable software.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h3 id="how-is-cyclomatic-complexity-calculated">How is Cyclomatic Complexity Calculated?
+&lt;/h3>&lt;p>Cyclomatic complexity is calculated using a program&amp;rsquo;s control flow graph, where:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Nodes&lt;/strong> represent statements or blocks of code.&lt;/li>
+&lt;li>&lt;strong>Edges&lt;/strong> represent the flow of control between these statements.&lt;/li>
+&lt;/ul>
+&lt;p>The formula is:&lt;/p>
+\[
+V(G) = E - N + 2P
+\]&lt;p>Where:&lt;/p>
+&lt;ul>
+&lt;li>\( E \): Number of edges&lt;/li>
+&lt;li>\( N \): Number of nodes&lt;/li>
+&lt;li>\( P \): Number of connected components (e.g., independent functions or modules)&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="what-do-cyclomatic-complexity-numbers-mean">What Do Cyclomatic Complexity Numbers Mean?
+&lt;/h3>&lt;p>The complexity value helps assess the maintainability of code:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>1–10:&lt;/strong> Low complexity, easy to test and maintain.&lt;/li>
+&lt;li>&lt;strong>11–20:&lt;/strong> Moderate complexity, requires more effort for testing and maintenance.&lt;/li>
+&lt;li>&lt;strong>21–50:&lt;/strong> High complexity, testing and maintenance become challenging.&lt;/li>
+&lt;li>&lt;strong>&amp;gt;50:&lt;/strong> Very high complexity, indicates the need for immediate refactoring.&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h3 id="example-measuring-complexity-in-code">Example: Measuring Complexity in Code
+&lt;/h3>&lt;p>Here’s an example in Python:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">example&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Positive&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">elif&lt;/span> &lt;span class="n">x&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Negative&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">else&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Zero&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>For this function:&lt;/p>
+&lt;ul>
+&lt;li>Nodes: 4 (Start, &lt;code>if&lt;/code>, &lt;code>elif&lt;/code>, &lt;code>else&lt;/code>)&lt;/li>
+&lt;li>Edges: 5 (Control flow between nodes)&lt;/li>
+&lt;li>\( P = 1 \): Single function&lt;/li>
+&lt;/ul>
+&lt;p>Using the formula:&lt;/p>
+\[
+V(G) = E - N + 2P = 5 - 4 + 2 = 3
+\]&lt;p>The function has a cyclomatic complexity of 3, indicating there are 3 independent paths through the code.&lt;/p>
+&lt;hr>
+&lt;h3 id="best-practices-to-manage-cyclomatic-complexity">Best Practices to Manage Cyclomatic Complexity
+&lt;/h3>&lt;ol>
+&lt;li>&lt;strong>Keep Functions Small:&lt;/strong> Break down large functions into smaller, reusable components.&lt;/li>
+&lt;li>&lt;strong>Avoid Deep Nesting:&lt;/strong> Refactor heavily nested logic into simpler constructs.&lt;/li>
+&lt;li>&lt;strong>Use Early Returns:&lt;/strong> Minimize branching by returning early when conditions are met.&lt;/li>
+&lt;li>&lt;strong>Write Unit Tests:&lt;/strong> Ensure all paths through the code are adequately tested.&lt;/li>
+&lt;/ol>
+&lt;hr>
+&lt;h3 id="final-thoughts">Final Thoughts
+&lt;/h3>&lt;p>Cyclomatic complexity is more than just a number—it’s a powerful tool for developers to understand their code better. By keeping complexity in check, you can write more maintainable, testable, and reliable software. Whether you’re building a small project or a large-scale application, this metric should be part of your toolkit for crafting high-quality code.&lt;/p>
+&lt;hr>
+&lt;blockquote>
+&lt;p>Generated by AI&lt;/p>
+&lt;/blockquote></description></item><item><title>Hello World</title><link>https://shivvamm.github.io/p/hello-world/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/hello-world/</guid><description>&lt;img src="https://shivvamm.github.io/p/hello-world/cover.jpg" alt="Featured image of post Hello World" />&lt;p>Welcome to Hugo theme Stack. This is your first post. Edit or delete it, then start writing!&lt;/p>
+&lt;p>For more information about this theme, check the documentation: &lt;a class="link" href="https://stack.jimmycai.com/" target="_blank" rel="noopener"
+>https://stack.jimmycai.com/&lt;/a>&lt;/p>
+&lt;p>Want a site like this? Check out &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack-starter" target="_blank" rel="noopener"
+>hugo-theme-stack-stater&lt;/a>&lt;/p>
+&lt;p>sample text cvbc&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@pawel_czerwinski" target="_blank" rel="noopener"
+>Pawel Czerwinski&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Understanding ReLU The Heart of Modern Deep Learning Activations</title><link>https://shivvamm.github.io/p/understanding-relu-the-heart-of-modern-deep-learning-activations/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/understanding-relu-the-heart-of-modern-deep-learning-activations/</guid><description>&lt;img src="https://shivvamm.github.io/p/understanding-relu-the-heart-of-modern-deep-learning-activations/cover.png" alt="Featured image of post Understanding ReLU The Heart of Modern Deep Learning Activations" />&lt;h3 id="relu-rectified-linear-unit-overview">ReLU (Rectified Linear Unit) Overview:
+&lt;/h3>&lt;p>ReLU stands for &lt;strong>Rectified Linear Unit&lt;/strong>, and it is one of the most widely used activation functions in deep learning, especially in Convolutional Neural Networks (CNNs) and other neural networks. Its simplicity and effectiveness make it a popular choice for training deep learning models.&lt;/p>
+&lt;h3 id="definition">Definition:
+&lt;/h3>&lt;p>The ReLU function is mathematically defined as:&lt;/p>
+\[
+f(x) = \max(0, x)
+\]&lt;p>In simple terms, it outputs:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>x&lt;/strong> if x is positive,&lt;/li>
+&lt;li>&lt;strong>0&lt;/strong> if x is negative.&lt;/li>
+&lt;/ul>
+&lt;p>This means that for any positive input, ReLU will return the input value, while for any negative input, it will return 0.&lt;/p>
+&lt;h3 id="visual-representation">Visual Representation:
+&lt;/h3>&lt;p>A plot of the ReLU function would show:&lt;/p>
+&lt;ul>
+&lt;li>A line with slope 1 for positive values of \( x \),&lt;/li>
+&lt;li>A flat line at 0 for negative values of \( x \).&lt;/li>
+&lt;/ul>
+&lt;p>The graph looks like this:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> |
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> |
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> | /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> | /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> | /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> | /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> | /
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> |___/__________
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="key-features-of-relu">Key Features of ReLU:
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Non-linearity&lt;/strong>: Although it looks like a simple linear function, ReLU introduces non-linearity because the output for negative values is clamped to zero. This allows neural networks to model complex patterns and relationships in the data.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Sparsity&lt;/strong>: ReLU introduces sparsity by setting all negative activations to zero. This makes the network &amp;ldquo;sparse&amp;rdquo; because many neurons may not activate for a given input. Sparsity can help in faster training and better generalization.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Computational Efficiency&lt;/strong>: ReLU is very computationally efficient because it only involves simple thresholding (i.e., comparing with 0), which is much less computationally expensive than some other activation functions like sigmoid or tanh.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="advantages-of-relu">Advantages of ReLU:
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Faster convergence&lt;/strong>: ReLU can significantly speed up the training process compared to sigmoid or tanh because it doesn’t saturate (especially for large positive values), which helps in gradient-based optimization.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Gradient flow&lt;/strong>: ReLU avoids the vanishing gradient problem that occurs in functions like the sigmoid or tanh. These activation functions tend to squash large values into a small range, causing very small gradients during backpropagation. In ReLU, the gradient is either 1 (for positive inputs) or 0 (for negative inputs), making it more effective for training deeper networks.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Sparsity and efficient representation&lt;/strong>: Because of the zeroing out of negative values, ReLU-based networks tend to have sparse activations, which can lead to better efficiency and potentially better performance, especially for large-scale models.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="limitations-of-relu">Limitations of ReLU:
+&lt;/h3>&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Dying ReLU problem&lt;/strong>: One issue with ReLU is that for negative input values, the function always outputs 0, which can cause neurons to &amp;ldquo;die&amp;rdquo; during training. This means the neurons stop learning because their gradients are zero, and they never activate. This is especially problematic when using large learning rates or initializing weights poorly.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Not bounded&lt;/strong>: ReLU is unbounded for positive inputs (i.e., there is no upper limit), which can sometimes lead to numerical instability or exploding gradients, especially for deep networks.&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="variants-of-relu">Variants of ReLU:
+&lt;/h3>&lt;p>To address some of the issues with standard ReLU, several variants have been proposed:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Leaky ReLU&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>In Leaky ReLU, instead of outputting 0 for negative values, a small slope (like 0.01) is used. Mathematically, it is defined as:
+\[
+f(x) = \begin{cases}
+x &amp; \text{if } x > 0 \\
+\alpha x &amp; \text{if } x \leq 0
+\end{cases}
+\]
+where \( \alpha \) is a small constant (usually a value like 0.01). This helps avoid the dying ReLU problem.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Parametric ReLU (PReLU)&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>Similar to Leaky ReLU, but here \( \alpha \) is learned during training, meaning it is a parameter of the model.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Exponential Linear Unit (ELU)&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>ELU is another variant where the function for negative values is:
+\[
+f(x) = \begin{cases}
+x &amp; \text{if } x > 0 \\
+\alpha (e^x - 1) &amp; \text{if } x \leq 0
+\end{cases}
+\]
+where \( \alpha \) is a constant. The ELU can help with the issue of dead neurons while also having smoother gradients for negative inputs.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Scaled Exponential Linear Unit (SELU)&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>SELU is a self-normalizing variant of ELU designed to ensure that activations in a network have mean 0 and variance 1, helping the network learn efficiently without explicit batch normalization.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="applications-of-relu">Applications of ReLU:
+&lt;/h3>&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Convolutional Neural Networks (CNNs)&lt;/strong>: ReLU is extensively used in CNNs for tasks like image classification, object detection, and more, as it works well with the high-dimensional data involved.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Fully Connected Networks&lt;/strong>: It’s also widely used in deep fully connected networks for tasks like speech recognition, natural language processing, and more.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Reinforcement Learning&lt;/strong>: ReLU is often used in deep reinforcement learning models for decision-making problems.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="summary">Summary:
+&lt;/h3>&lt;ul>
+&lt;li>&lt;strong>ReLU&lt;/strong> is a simple, fast, and effective activation function.&lt;/li>
+&lt;li>It helps avoid the vanishing gradient problem, leading to faster and more stable training.&lt;/li>
+&lt;li>Variants like &lt;strong>Leaky ReLU&lt;/strong> and &lt;strong>ELU&lt;/strong> address the problem of dying neurons and can be useful in certain scenarios.&lt;/li>
+&lt;li>Despite its simplicity, ReLU has proven to be highly effective in deep learning and has become the default activation function in many modern neural networks.&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;p>Generated by AI&lt;/p>
+&lt;/blockquote></description></item><item><title>Markdown Syntax Guide</title><link>https://shivvamm.github.io/p/markdown-syntax-guide/</link><pubDate>Thu, 07 Sep 2023 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/markdown-syntax-guide/</guid><description>&lt;p>This article offers a sample of basic Markdown syntax that can be used in Hugo content files, also it shows whether basic HTML elements are decorated with CSS in a Hugo theme.&lt;/p>
+&lt;h2 id="headings">Headings
+&lt;/h2>&lt;p>The following HTML &lt;code>&amp;lt;h1&amp;gt;&lt;/code>—&lt;code>&amp;lt;h6&amp;gt;&lt;/code> elements represent six levels of section headings. &lt;code>&amp;lt;h1&amp;gt;&lt;/code> is the highest section level while &lt;code>&amp;lt;h6&amp;gt;&lt;/code> is the lowest.&lt;/p>
+&lt;h1 id="h1">H1
+&lt;/h1>&lt;h2 id="h2">H2
+&lt;/h2>&lt;h3 id="h3">H3
+&lt;/h3>&lt;h4 id="h4">H4
+&lt;/h4>&lt;h5 id="h5">H5
+&lt;/h5>&lt;h6 id="h6">H6
+&lt;/h6>&lt;h2 id="paragraph">Paragraph
+&lt;/h2>&lt;p>Xerum, quo qui aut unt expliquam qui dolut labo. Aque venitatiusda cum, voluptionse latur sitiae dolessi aut parist aut dollo enim qui voluptate ma dolestendit peritin re plis aut quas inctum laceat est volestemque commosa as cus endigna tectur, offic to cor sequas etum rerum idem sintibus eiur? Quianimin porecus evelectur, cum que nis nust voloribus ratem aut omnimi, sitatur? Quiatem. Nam, omnis sum am facea corem alique molestrunt et eos evelece arcillit ut aut eos eos nus, sin conecerem erum fuga. Ri oditatquam, ad quibus unda veliamenimin cusam et facea ipsamus es exerum sitate dolores editium rerore eost, temped molorro ratiae volorro te reribus dolorer sperchicium faceata tiustia prat.&lt;/p>
+&lt;p>Itatur? Quiatae cullecum rem ent aut odis in re eossequodi nonsequ idebis ne sapicia is sinveli squiatum, core et que aut hariosam ex eat.&lt;/p>
+&lt;h2 id="blockquotes">Blockquotes
+&lt;/h2>&lt;p>The blockquote element represents content that is quoted from another source, optionally with a citation which must be within a &lt;code>footer&lt;/code> or &lt;code>cite&lt;/code> element, and optionally with in-line changes such as annotations and abbreviations.&lt;/p>
+&lt;h3 id="blockquote-without-attribution">Blockquote without attribution
+&lt;/h3>&lt;blockquote>
+&lt;p>Tiam, ad mint andaepu dandae nostion secatur sequo quae.
+&lt;strong>Note&lt;/strong> that you can use &lt;em>Markdown syntax&lt;/em> within a blockquote.&lt;/p>
+&lt;/blockquote>
+&lt;h3 id="blockquote-with-attribution">Blockquote with attribution
+&lt;/h3>&lt;blockquote>
+&lt;p>Don&amp;rsquo;t communicate by sharing memory, share memory by communicating.&lt;br>
+— &lt;cite>Rob Pike&lt;sup id="fnref:1">&lt;a href="#fn:1" class="footnote-ref" role="doc-noteref">1&lt;/a>&lt;/sup>&lt;/cite>&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="tables">Tables
+&lt;/h2>&lt;p>Tables aren&amp;rsquo;t part of the core Markdown spec, but Hugo supports supports them out-of-the-box.&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Name&lt;/th>
+&lt;th>Age&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Bob&lt;/td>
+&lt;td>27&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>Alice&lt;/td>
+&lt;td>23&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="inline-markdown-within-tables">Inline Markdown within tables
+&lt;/h3>&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>Italics&lt;/th>
+&lt;th>Bold&lt;/th>
+&lt;th>Code&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>&lt;em>italics&lt;/em>&lt;/td>
+&lt;td>&lt;strong>bold&lt;/strong>&lt;/td>
+&lt;td>&lt;code>code&lt;/code>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>A&lt;/th>
+&lt;th>B&lt;/th>
+&lt;th>C&lt;/th>
+&lt;th>D&lt;/th>
+&lt;th>E&lt;/th>
+&lt;th>F&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>Lorem ipsum dolor sit amet, consectetur adipiscing elit.&lt;/td>
+&lt;td>Phasellus ultricies, sapien non euismod aliquam, dui ligula tincidunt odio, at accumsan nulla sapien eget ex.&lt;/td>
+&lt;td>Proin eleifend dictum ipsum, non euismod ipsum pulvinar et. Vivamus sollicitudin, quam in pulvinar aliquam, metus elit pretium purus&lt;/td>
+&lt;td>Proin sit amet velit nec enim imperdiet vehicula.&lt;/td>
+&lt;td>Ut bibendum vestibulum quam, eu egestas turpis gravida nec&lt;/td>
+&lt;td>Sed scelerisque nec turpis vel viverra. Vivamus vitae pretium sapien&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h2 id="code-blocks">Code Blocks
+&lt;/h2>&lt;h3 id="code-block-with-backticks">Code block with backticks
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt"> 1
+&lt;/span>&lt;span class="lnt"> 2
+&lt;/span>&lt;span class="lnt"> 3
+&lt;/span>&lt;span class="lnt"> 4
+&lt;/span>&lt;span class="lnt"> 5
+&lt;/span>&lt;span class="lnt"> 6
+&lt;/span>&lt;span class="lnt"> 7
+&lt;/span>&lt;span class="lnt"> 8
+&lt;/span>&lt;span class="lnt"> 9
+&lt;/span>&lt;span class="lnt">10
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;!doctype html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span> &lt;span class="na">lang&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;en&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">meta&lt;/span> &lt;span class="na">charset&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;utf-8&amp;#34;&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Example HTML5 Document&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Test&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="code-block-indented-with-four-spaces">Code block indented with four spaces
+&lt;/h3>&lt;pre>&lt;code>&amp;lt;!doctype html&amp;gt;
+&amp;lt;html lang=&amp;quot;en&amp;quot;&amp;gt;
+&amp;lt;head&amp;gt;
+&amp;lt;meta charset=&amp;quot;utf-8&amp;quot;&amp;gt;
+&amp;lt;title&amp;gt;Example HTML5 Document&amp;lt;/title&amp;gt;
+&amp;lt;/head&amp;gt;
+&amp;lt;body&amp;gt;
+&amp;lt;p&amp;gt;Test&amp;lt;/p&amp;gt;
+&amp;lt;/body&amp;gt;
+&amp;lt;/html&amp;gt;
+&lt;/code>&lt;/pre>
+&lt;h3 id="diff-code-block">Diff code block
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-diff" data-lang="diff">&lt;span class="line">&lt;span class="cl">[dependencies.bevy]
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git = &amp;#34;https://github.com/bevyengine/bevy&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rev = &amp;#34;11f52b8c72fc3a568e8bb4a4cd1f3eb025ac2e13&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">- features = [&amp;#34;dynamic&amp;#34;]
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="gd">&lt;/span>&lt;span class="gi">+ features = [&amp;#34;jpeg&amp;#34;, &amp;#34;dynamic&amp;#34;]
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h3 id="one-line-code-block">One line code block
+&lt;/h3>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-html" data-lang="html">&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>A paragraph&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">p&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="list-types">List Types
+&lt;/h2>&lt;h3 id="ordered-list">Ordered List
+&lt;/h3>&lt;ol>
+&lt;li>First item&lt;/li>
+&lt;li>Second item&lt;/li>
+&lt;li>Third item&lt;/li>
+&lt;/ol>
+&lt;h3 id="unordered-list">Unordered List
+&lt;/h3>&lt;ul>
+&lt;li>List item&lt;/li>
+&lt;li>Another item&lt;/li>
+&lt;li>And another item&lt;/li>
+&lt;/ul>
+&lt;h3 id="nested-list">Nested list
+&lt;/h3>&lt;ul>
+&lt;li>Fruit
+&lt;ul>
+&lt;li>Apple&lt;/li>
+&lt;li>Orange&lt;/li>
+&lt;li>Banana&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Dairy
+&lt;ul>
+&lt;li>Milk&lt;/li>
+&lt;li>Cheese&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="other-elements--abbr-sub-sup-kbd-mark">Other Elements — abbr, sub, sup, kbd, mark
+&lt;/h2>&lt;p>&lt;abbr title="Graphics Interchange Format">GIF&lt;/abbr> is a bitmap image format.&lt;/p>
+&lt;p>H&lt;sub>2&lt;/sub>O&lt;/p>
+&lt;p>X&lt;sup>n&lt;/sup> + Y&lt;sup>n&lt;/sup> = Z&lt;sup>n&lt;/sup>&lt;/p>
+&lt;p>Press &lt;kbd>CTRL&lt;/kbd> + &lt;kbd>ALT&lt;/kbd> + &lt;kbd>Delete&lt;/kbd> to end the session.&lt;/p>
+&lt;p>Most &lt;mark>salamanders&lt;/mark> are nocturnal, and hunt for insects, worms, and other small creatures.&lt;/p>
+&lt;div class="footnotes" role="doc-endnotes">
+&lt;hr>
+&lt;ol>
+&lt;li id="fn:1">
+&lt;p>The above quote is excerpted from Rob Pike&amp;rsquo;s &lt;a class="link" href="https://www.youtube.com/watch?v=PAAkCSZUG1c" target="_blank" rel="noopener"
+>talk&lt;/a> during Gopherfest, November 18, 2015.&amp;#160;&lt;a href="#fnref:1" class="footnote-backref" role="doc-backlink">&amp;#x21a9;&amp;#xfe0e;&lt;/a>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/div></description></item><item><title>Image gallery</title><link>https://shivvamm.github.io/p/image-gallery/</link><pubDate>Sat, 26 Aug 2023 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/image-gallery/</guid><description>&lt;img src="https://shivvamm.github.io/p/image-gallery/2.jpg" alt="Featured image of post Image gallery" />&lt;p>Hugo theme Stack supports the creation of interactive image galleries using Markdown. It&amp;rsquo;s powered by &lt;a class="link" href="https://photoswipe.com/" target="_blank" rel="noopener"
+>PhotoSwipe&lt;/a> and its syntax was inspired by &lt;a class="link" href="https://typlog.com/" target="_blank" rel="noopener"
+>Typlog&lt;/a>.&lt;/p>
+&lt;p>To use this feature, the image must be in the same directory as the Markdown file, as it uses Hugo&amp;rsquo;s page bundle feature to read the dimensions of the image. &lt;strong>External images are not supported.&lt;/strong>&lt;/p>
+&lt;h2 id="syntax">Syntax
+&lt;/h2>&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">![&lt;span class="nt">Image 1&lt;/span>](&lt;span class="na">1.jpg&lt;/span>) ![&lt;span class="nt">Image 2&lt;/span>](&lt;span class="na">2.jpg&lt;/span>)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="result">Result
+&lt;/h2>&lt;p>&lt;img src="https://shivvamm.github.io/p/image-gallery/1.jpg"
+width="2000"
+height="1400"
+srcset="https://shivvamm.github.io/p/image-gallery/1_hu4574578169203714971.jpg 480w, https://shivvamm.github.io/p/image-gallery/1_hu9042511268598201431.jpg 1024w"
+loading="lazy"
+alt="Image 1"
+class="gallery-image"
+data-flex-grow="142"
+data-flex-basis="342px"
+> &lt;img src="https://shivvamm.github.io/p/image-gallery/2.jpg"
+width="1500"
+height="2250"
+srcset="https://shivvamm.github.io/p/image-gallery/2_hu10699635480308914167.jpg 480w, https://shivvamm.github.io/p/image-gallery/2_hu1741040415904021193.jpg 1024w"
+loading="lazy"
+alt="Image 2"
+class="gallery-image"
+data-flex-grow="66"
+data-flex-basis="160px"
+>&lt;/p>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@mymind" target="_blank" rel="noopener"
+>mymind&lt;/a> and &lt;a class="link" href="https://unsplash.com/@lukechesser" target="_blank" rel="noopener"
+>Luke Chesser&lt;/a> on &lt;a class="link" href="https://unsplash.com/" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Shortcodes</title><link>https://shivvamm.github.io/p/shortcodes/</link><pubDate>Fri, 25 Aug 2023 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/shortcodes/</guid><description>&lt;img src="https://shivvamm.github.io/p/shortcodes/cover.jpg" alt="Featured image of post Shortcodes" />&lt;p>For more details, check out the &lt;a class="link" href="https://stack.jimmycai.com/writing/shortcodes" target="_blank" rel="noopener"
+>documentation&lt;/a>.&lt;/p>
+&lt;h2 id="bilibili-video">Bilibili video
+&lt;/h2>
+&lt;div class="video-wrapper">
+&lt;iframe src="https://player.bilibili.com/player.html?as_wide=1&amp;amp;high_quality=1&amp;amp;page=1&amp;bvid=BV1d4411N7zD"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;h2 id="tencent-video">Tencent video
+&lt;/h2>
+&lt;div class="video-wrapper">
+&lt;iframe src="https://v.qq.com/txp/iframe/player.html?vid=g0014r3khdw&amp;auto=0"
+scrolling="no"
+frameborder="no"
+framespacing="0"
+allowfullscreen="true"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;h2 id="youtube-video">YouTube video
+&lt;/h2>&lt;div class="video-wrapper">
+&lt;iframe loading="lazy"
+src="https://www.youtube.com/embed/0qwALOOvUik"
+allowfullscreen
+title="YouTube Video"
+>
+&lt;/iframe>
+&lt;/div>
+&lt;h2 id="generic-video-file">Generic video file
+&lt;/h2>&lt;div class="video-wrapper">
+&lt;video
+controls
+src="https://www.w3schools.com/tags/movie.mp4"
+>
+&lt;p>
+Your browser doesn't support HTML5 video. Here is a
+&lt;a href="https://www.w3schools.com/tags/movie.mp4">link to the video&lt;/a> instead.
+&lt;/p>
+&lt;/video>
+&lt;/div>
+&lt;h2 id="gist">Gist
+&lt;/h2>&lt;script src="https://gist.github.com/CaiJimmy/e2751a943de10b2a5b3a8a6c2120cb86.js">&lt;/script>
+&lt;h2 id="gitlab">GitLab
+&lt;/h2>&lt;script
+type="application/javascript"
+src="https://gitlab.com/-/snippets/2589724.js"
+>&lt;/script>
+&lt;h2 id="quote">Quote
+&lt;/h2>&lt;blockquote>
+&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p>&lt;span class="cite">&lt;span>― &lt;/span>&lt;span>A famous person, &lt;/span>&lt;a href="https://en.wikipedia.org/wiki/Book">&lt;cite>The book they wrote&lt;/cite>&lt;/a>&lt;/span>&lt;/blockquote>
+&lt;hr>
+&lt;blockquote>
+&lt;p>Photo by &lt;a class="link" href="https://unsplash.com/@codioful" target="_blank" rel="noopener"
+>Codioful&lt;/a> on &lt;a class="link" href="https://unsplash.com/photos/WDSN62Qdxuk" target="_blank" rel="noopener"
+>Unsplash&lt;/a>&lt;/p>
+&lt;/blockquote></description></item><item><title>Math Typesetting</title><link>https://shivvamm.github.io/p/math-typesetting/</link><pubDate>Thu, 24 Aug 2023 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/p/math-typesetting/</guid><description>&lt;p>Stack has built-in support for math typesetting using &lt;a class="link" href="https://katex.org/" target="_blank" rel="noopener"
+>KaTeX&lt;/a>.&lt;/p>
+&lt;p>&lt;strong>It&amp;rsquo;s not enabled by default side-wide,&lt;/strong> but you can enable it for individual posts by adding &lt;code>math: true&lt;/code> to the front matter. Or you can enable it side-wide by adding &lt;code>math = true&lt;/code> to the &lt;code>params.article&lt;/code> section in &lt;code>config.toml&lt;/code>.&lt;/p>
+&lt;h2 id="inline-math">Inline math
+&lt;/h2>&lt;p>This is an inline mathematical expression: $\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">$\varphi = \dfrac{1+\sqrt5}{2}= 1.6180339887…$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;h2 id="block-math">Block math
+&lt;/h2>$$
+\varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+$$&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">$$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> \varphi = 1+\frac{1} {1+\frac{1} {1+\frac{1} {1+\cdots} } }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>$$
+f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+$$&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">$$
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> f(x) = \int_{-\infty}^\infty\hat f(\xi)\,e^{2 \pi i \xi x}\,d\xi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">$$
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div></description></item><item><title>Archives</title><link>https://shivvamm.github.io/archives/</link><pubDate>Sun, 06 Mar 2022 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/archives/</guid><description/></item><item><title>Links</title><link>https://shivvamm.github.io/links/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/links/</guid><description>&lt;p>To use this feature, add &lt;code>links&lt;/code> section to frontmatter.&lt;/p>
+&lt;p>This page&amp;rsquo;s frontmatter:&lt;/p>
+&lt;div class="highlight">&lt;div class="chroma">
+&lt;table class="lntable">&lt;tr>&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code>&lt;span class="lnt">1
+&lt;/span>&lt;span class="lnt">2
+&lt;/span>&lt;span class="lnt">3
+&lt;/span>&lt;span class="lnt">4
+&lt;/span>&lt;span class="lnt">5
+&lt;/span>&lt;span class="lnt">6
+&lt;/span>&lt;span class="lnt">7
+&lt;/span>&lt;span class="lnt">8
+&lt;/span>&lt;span class="lnt">9
+&lt;/span>&lt;/code>&lt;/pre>&lt;/td>
+&lt;td class="lntd">
+&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">links&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">GitHub is the world&amp;#39;s largest software development platform.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.com&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">description&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">TypeScript is a typed superset of JavaScript that compiles to plain JavaScript.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">website&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">https://www.typescriptlang.org&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">image&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ts-logo-128.jpg&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/td>&lt;/tr>&lt;/table>
+&lt;/div>
+&lt;/div>&lt;p>&lt;code>image&lt;/code> field accepts both local and external images.&lt;/p></description></item><item><title>Search</title><link>https://shivvamm.github.io/search/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://shivvamm.github.io/search/</guid><description/></item></channel></rss>
